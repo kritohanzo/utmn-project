@@ -1,0 +1,121 @@
+{% extends 'forum/base.html' %}
+{% block title %}Главная страница форума{% endblock %}
+{% block og_title %}Форум любителей ТюмГУ{% endblock %}
+{% block og_url %}https://kritohanzo.ru/forum/{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-center flex-wrap">
+  <div class="text-center">
+    <a class="btn btn-light btn-outline-dark btn-lg font mt-2" href="https://kritohanzo.ru/forum/create/">Создать новый
+      пост</a>
+    {% if user.is_superuser %}
+    <div class="text-center">
+    <a class="btn btn-danger btn-outline-dark btn-lg font mt-2" href="https://kritohanzo.ru/forum/stopped_posts/">Список
+      постов на модерации</a>
+    <a class="btn btn-danger btn-outline-dark btn-lg font mt-2" href="https://kritohanzo.ru/forum/deleted_posts/">Список
+      удалённых постов</a>
+      </div>
+      <div class="text-center">
+        <a class="btn btn-danger btn-outline-dark btn-lg font mt-2" href="https://kritohanzo.ru/forum/stopped_comments/">Список
+          комментариев на модерации</a>
+        <a class="btn btn-danger btn-outline-dark btn-lg font mt-2" href="https://kritohanzo.ru/forum/deleted_comments/">Список
+          удалённых комментариев</a>
+          </div>
+    {% endif %}
+  </div>
+  {% for post in posts %}
+  {% if post.is_published == True and post.is_deleted == False %}
+  <div class="col-11 row rounded-4 shadow p-4 border bg-white m-2">
+    <div class="col-12 col-md-4 font">
+      Дата: {{ post.pub_date|date:"d.m.Y H:i:s" }}
+    </div>
+    <div class="col-12 col-md-4 d-flex flex-column">
+      <div class="text-center text-break mb-2 pb-2 fw-bold border-bottom border-dark font">
+        {{ post.title }}
+      </div>
+      <div class="text-center text-break mb-2 pb-2 border-bottom border-dark font">
+        {{ post.text }}
+      </div>
+      <div class="text-center mt-2">
+        <a class="btn btn-outline-dark btn-lg font"
+          href="{% url 'forum:post_detail_url' pk=post.pk %}">Комменировать</a>
+      </div>
+    </div>
+    <div class="col-12 col-md-4 d-flex text-break justify-content-end align-items-end font">
+      Автор: {{ post.author }}
+    </div>
+  </div>
+  {% elif post.is_deleted == True %}
+  <div class="col-11 row rounded-4 shadow p-4 border bg-danger m-2">
+    <div class="col-12 col-md-4 font">
+      Дата: {{ post.pub_date|date:"d.m.Y H:i:s" }}
+    </div>
+    <div class="col-12 col-md-4 d-flex flex-column">
+      {% if user.is_superuser %}
+      <div class="text-center text-break mb-2 pb-2 fw-bold border-bottom border-dark font">
+        {{ post.title }}
+      </div>
+      <div class="text-center text-break mb-2 pb-2 border-bottom border-dark font">
+        {{ post.text }}
+      </div>
+      {% else %}
+      <div class="text-center text-break fw-bold font">
+        Пост удалён администратором.
+      </div>
+      {% endif %}
+      {% if user.is_superuser %}
+      <div class="text-center mt-2">
+        <a class="btn btn-outline-dark btn-lg font"
+          href="{% url 'forum:post_detail_url' pk=post.pk %}">Модерировать</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="col-12 col-md-4 d-flex text-break justify-content-end align-items-end font">
+      Автор: {{ post.author }}
+    </div>
+  </div>
+
+  {% elif post.is_deleted == False and post.is_published == False %}
+  <div class="col-11 row rounded-4 shadow p-4 border bg-danger m-2">
+    <div class="col-12 col-md-4 font">
+      Дата: {{ post.pub_date|date:"d.m.Y H:i:s" }}
+    </div>
+    <div class="col-12 col-md-4 d-flex flex-column">
+      {% if user.is_superuser %}
+      <div class="text-center text-break mb-2 pb-2 fw-bold border-bottom border-dark font">
+        {{ post.title }}
+      </div>
+      <div class="text-center text-break mb-2 pb-2 border-bottom border-dark font">
+        {{ post.text }}
+      </div>
+      {% else %}
+      <div class="text-center text-break fw-bold font">
+        Пост на модерации.
+      </div>
+      {% endif %}
+      {% if user.is_superuser %}
+      <div class="text-center mt-2">
+        <a class="btn btn-outline-dark btn-lg font"
+          href="{% url 'forum:post_detail_url' pk=post.pk %}">Модерировать</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="col-12 col-md-4 d-flex text-break justify-content-end align-items-end font">
+      Автор: {{ post.author }}
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+
+{% if messages %}
+{% for message in messages %}
+{% if message.tags %}
+<script>
+  alert("{{ message }}")
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endblock %}

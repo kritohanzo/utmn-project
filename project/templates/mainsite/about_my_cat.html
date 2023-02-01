@@ -1,0 +1,35 @@
+{% extends 'mainsite/base.html' %}
+{% load static %}
+{% block title %}О моём коте{% endblock %}
+{% block og_title %}О моём коте{% endblock %}
+{% block og_url %}https://kritohanzo.ru/about_my_cat/{% endblock %}
+{% block content %}
+<div class="text-center d-flex align-items-center flex-column h-100 justify-content-center">
+  <h1 class="px-2">Снова 안녕하세요, тут вы уже найдёте information about my MBARAKAJA.</h1>
+  <p class="px-2">Вам, наверное, интересно, что за слово такое «MBARAKAJA»?</p>
+  <p class="px-2">А я вам отвечу, что с гуаранского языка это означает «CAT».</p>
+  <p class="px-2">И вы правильно поняли... эта страница посвящена информации о моём коте.</p>
+  <p class="px-2">Кота у меня нет, поэтому довольствуемся гифками смешных котов... </p>
+
+  <div class="d-flex flex-row flex-wrap mt-4">
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'gifs/cat1.gif' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'gifs/cat2.gif' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'gifs/cat3.gif' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'gifs/cat4.gif' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'gifs/cat5.gif' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'gifs/cat6.gif' %}">
+    </div>
+  </div>
+</div>
+{% endblock %}

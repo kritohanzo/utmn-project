@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Страница не найдена</title>
+  <link rel="shortcut icon" href="{% static 'icos/pepe.ico' %}">
+  <link rel="stylesheet" href="{% static '/styles/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static '/styles/style.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta property="og:title" content="Страница не найдена">
+  <meta property="og:description" content="Если ты любишь ТюмГУ - заходи">
+  <meta property="og:image" content="{% static 'logos/logo.png' %}">
+  <meta property="og:url" content="https://kritohanzo.ru/forum/404/">
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date();
+      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(91743271, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true
+    });
+  </script>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/91743271" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGH0R96S3Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-NGH0R96S3Y');
+  </script>
+</head>
+
+<body class="min-vh-100 grid" oncopy="return false;">
+  <header>
+    <div
+      class="col-12 col-sm-12 col-md-12 col-xl-11 mx-auto d-flex flex-row flex-wrap p-4 text-center justify-content-center justify-content-sm-center justify-content-md-center justify-content-xl-between">
+      <div class="col-12 col-sm-12 col-md-12 col-xl-12 mb-2">
+        <a href="{% url 'mainsite:index' %}"><img src="{% static 'logos/logo.png' %}"></a>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-xl-12 row m-0 justify-content-center align-content-center">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+          <a class="current_link" href="{% url 'mainsite:index' %}">Главная страница основого сайта</a>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+          <a class="current_link" href="{% url 'forum:index' %}">Главная страница форума</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="d-flex h-100 justify-content-center align-items-center">
+      <div class="text-center">
+        😞
+        <h1>Ой, кажется мы не смогли найти нужную страницу...</h1>
+        <p class="font">Чтобы вернуться на сайт - вы можете воспользоваться навигацией на самом верху страницы.</p>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+.grid {
+    display: grid;
+    grid-template-areas:
+    "h"
+    "c"
+    "f";
+    grid-template-rows: auto 1fr;
+}
+
+body {
+   background: linear-gradient(to bottom right, aqua, white);
+}
+
+header {
+    grid-area: h;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+main {
+    grid-area: c;
+}
+
+footer {
+    grid-area: f;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.current_link {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 26px;
+    position: relative;
+    text-shadow: 3px 3px 3px black;
+    text-decoration: none;
+    border: 1px solid transparent;
+    color: white;
+}
+
+.current_link:hover {
+    color: #00aeed;
+    transition: all 1s ease;
+}
+
+.font {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 26px;
+}
+
+.imgs {
+    height: 250px;
+    width: 100%;
+}
+
+hr {
+    border: 0;
+    clear: both;
+    display: block;
+    width: 96%;
+    background-color: #000;
+    height: 1px;
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    text-shadow: 3px 3px 3px black;
+}
+
+p {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-weight: 400;
+    font-size: 24px;
+    text-shadow: 3px 3px 3px black;
+    margin: 0;
+}

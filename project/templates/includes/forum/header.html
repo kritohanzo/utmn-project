@@ -1,0 +1,27 @@
+{% load static %}
+<div
+  class="col-12 col-sm-12 col-md-12 col-xl-11 mx-auto d-flex flex-row flex-wrap p-4 text-center justify-content-center justify-content-sm-center justify-content-md-center justify-content-xl-between">
+  <div class="col-12 col-sm-12 col-md-12 col-xl-12 mb-2">
+    <a href="{% url 'forum:index' %}"><img src="{% static 'logos/logo.png' %}"></a>
+  </div>
+  <div class="col-12 col-sm-12 col-md-12 col-xl-12 row m-0 align-content-center justify-content-center">
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+      <a class="current_link" href="{% url 'mainsite:index' %}">Вернуться на главный сайт</a>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+      <a class="current_link" href="{% url 'forum:logout' %}">Выйти</a>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+      <p class="font">Добро пожаловать, {{ user.username }}</p>
+    </div>
+    {% else %}
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+      <a class="current_link" href="{% url 'forum:register' %}">Зарегистироваться</a>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+      <a class="current_link" href="{% url 'forum:login' %}">Войти</a>
+    </div>
+    {% endif %}
+  </div>
+</div>

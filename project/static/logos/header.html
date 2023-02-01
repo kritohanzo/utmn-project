@@ -1,0 +1,14 @@
+{% load static %}
+<div class ="d-flex flew-row flex-wrap">
+  <div class="col-3">
+    <img src="{% url 'logos/logo.png' %}">
+  </div>
+  <div class="col-9">
+    <a class="current_link" href="{% url 'mainsite:index' %}">Main page</a>
+    <a class="current_link" href="{% url 'mainsite:about_me' %}">About me</a>
+    <a class="current_link" href="{% url 'mainsite:about_my_cat' %}">About my cat</a>
+    <a class="current_link" href="{% url 'mainsite:about_university' %}">About university</a>
+    <a class="current_link" href="{% url 'mainsite:about_my_friend' %}">About my friend</a>
+    <a class="current_link" href="{% url 'forum:index' %}">Forum</a>
+  </div>
+</div>

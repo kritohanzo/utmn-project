@@ -1,0 +1,21 @@
+User-agent: *
+Disallow: /admin
+Disallow: /forum/post/*
+Disallow: /forum/post/*/accept
+Disallow: /forum/post/*/delete
+Disallow: /forum/post/*/restore
+Disallow: /forum/post/*/on_moderate
+Disallow: /forum/stopped_posts
+Disallow: /forum/deleted_posts
+Disallow: /forum/comment/*/accept
+Disallow: /forum/comment/*/delete
+Disallow: /forum/comment/*/restore
+Disallow: /forum/comment/*/on_moderate
+Disallow: /forum/stopped_comments
+Disallow: /forum/deleted_comments
+Allow: /forum
+Allow: /forum/register
+Allow: /forum/login
+Allow: */
+
+Sitemap: https://kritohanzo.ru/sitemap.xml

@@ -1,0 +1,28 @@
+{% extends 'mainsite/base.html' %}
+{% load static %}
+{% block title %}О моём друге{% endblock %}
+{% block og_title %}О моём друге{% endblock %}
+{% block og_url %}https://kritohanzo.ru/about_my_friend/{% endblock %}
+{% block content %}
+<div class="text-center d-flex align-items-center flex-column h-100 justify-content-center">
+  <h1 class="px-2">Нестандатные привествия кончаются, что же делать?</h1>
+  <p class="px-2">Без лишних слов... information about my prijatelju.</p>
+  <p class="px-2">Его зовут ANONIMOUS, ему уже на год меньше, ему XY лет.</p>
+  <p class="px-2">Он тоже учится в XYZ, но выкупать его не планирует.</p>
+  <p class="px-2">Вашему вниманию, мой друг ANONIMOUS...</p>
+  <div class="d-flex flex-row flex-wrap mt-4">
+    <div class="col-12 col-md-6 col-xl-6">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/my_friend_discord.jpg' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-6">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/my_friend_vk.jpg' %}">
+    </div>
+  </div>
+  <p class="px-2 mt-3">А вот тут вот мы делаем совместные проекты...</p>
+  <div class="d-flex flex-row flex-wrap mt-4">
+    <div class="col-12 col-md-12 col-xl-12">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/discord_me_and_friend.jpg' %}">
+    </div>
+  </div>
+</div>
+{% endblock %}

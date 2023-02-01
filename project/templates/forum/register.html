@@ -1,0 +1,37 @@
+{% extends 'forum/base.html' %}
+{% block title %}Регистрация форумного аккаунта{% endblock %}
+{% block og_title %}Форум любителей ТюмГУ - регистрация{% endblock %}
+{% block og_url %}https://kritohanzo.ru/forum/register/{% endblock %}
+{% block content %}        
+
+<div class="text-center d-flex align-items-center flex-column h-100 justify-content-center font">
+	<form action="{% url 'forum:register' %}" method="POST">
+		{% csrf_token %}
+		{% for field in register_form %}  
+			<div class="form-group mb-2">
+				{% if field.errors %}
+					<div class="error">
+						{{ field.errors }}
+					</div>
+				{% endif %}
+				<p class="font text-center">{{ field.label }}</p>
+				{{ field }}
+			</div> 
+		{% endfor %}
+		<h6 class="font text-muted">пароль должен содержать как минимум 1 цифру и не быть общедоступным</h6>                 
+		<button class="btn btn-light btn-outline-dark btn-lg mb-4 font" type="submit">Зарегистироваться</button>
+	</form>
+	<p class="text-center mb-2">У вас уже есть аккаунт?</p>
+	<a class="btn btn-light btn-outline-dark btn-lg font" href="{% url 'forum:login' %}">Войти</a>
+</div>
+
+{% if messages %}
+{% for message in messages %}
+{% if message.tags %}
+<script>
+  alert("{{ message }}")
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endblock %}

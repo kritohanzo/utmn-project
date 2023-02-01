@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="shortcut icon" href="{% static 'icos/pepe.ico' %}">
+  <link rel="stylesheet" href="{% static '/styles/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta property="og:title" content="{% block og_title %}{% endblock %}">
+  <meta property="og:description" content="Информация обо мне">
+  <meta property="og:image" content="{% static 'logos/logo.png' %}">
+  <meta property="og:url" content="{% block og_url %}{% endblock %}">
+  <meta name="yandex-verification" content="6236759e554611ed" />
+  <!-- Yandex.Metrika informer -->
+  <a href="https://metrika.yandex.ru/stat/?id=91743271&amp;from=informer" target="_blank" rel="nofollow"><img
+      src="https://informer.yandex.ru/informer/91743271/3_0_FFFFFFFF_FFFFFFFF_0_uniques"
+      style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика"
+      title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer"
+      data-cid="91743271" data-lang="ru" /></a>
+  <!-- /Yandex.Metrika informer -->
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date();
+      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(91743271, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true
+    });
+  </script>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/91743271" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGH0R96S3Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-NGH0R96S3Y');
+  </script>
+</head>
+
+<body class="min-vh-100 grid" oncopy="return false;">
+  <header>
+    {% include 'includes/mainsite/header.html' %}
+  </header>
+  <main>
+    {% block content %}
+    hello
+    {% endblock %}
+  </main>
+  <script type="text/javascript">
+    snow_img = "{% static 'snow/snow.png' %}"; //Картинка снежинки
+    snow_no = 10; //Число снежинок
+    var timeszimaon = 1; //Запускать скрипт 1 - да, 0 - нет
+    if (typeof (window.pageYOffset) == "number") {
+      snow_browser_width = window.innerWidth;
+      snow_browser_height = window.innerHeight;
+    }
+    else if (document.body && (document.body.scrollLeft ||
+      document.body.scrollTop)) {
+      snow_browser_width = document.body.offsetWidth;
+      snow_browser_height = document.body.offsetHeight;
+    }
+    else if (document.documentElement && (document.documentElement.scrollLeft ||
+      document.documentElement.scrollTop)) {
+      snow_browser_width = document.documentElement.offsetWidth;
+      snow_browser_height = document.documentElement.offsetHeight;
+    }
+    else {
+      snow_browser_width = 500;
+      snow_browser_height = 500;
+    }
+    snow_dx = [];
+    snow_xp = [];
+    snow_yp = [];
+    snow_am = [];
+    snow_stx = [];
+    snow_sty = [];
+    if (timeszimaon == 1) {
+      for (i = 0; i < snow_no; i++) {
+        snow_dx[i] = 0;
+        snow_xp[i] = Math.random() * (snow_browser_width - 50);
+        snow_yp[i] = Math.random() * snow_browser_height;
+        snow_am[i] = Math.random() * 20;
+        snow_stx[i] = 0.02 + Math.random() / 10;
+        snow_sty[i] = 0.7 + Math.random();
+        //Здесь задается позиция снежинок за счет z-index
+        if (i == 0) document.write("<\div id=\"snow_flake0\"style=\"position:absolute;zindex:0\"><a href=\"#\" target=\"_blank\"><\imgsrc=\"" + snow_img + "\"border =\"0\"></a><\/div>");
+        else document.write("<\div id=\"snow_flake" + i + "\"style =\"position:absolute;zindex:10000" + i + "\"><\img src=\"" + snow_img + "\"border =\"0\"><\/div>");
+      }
+    }
+    function SnowStart() {
+      for (i = 0; i < snow_no; i++) {
+        snow_yp[i] += snow_sty[i];
+        if (snow_yp[i] > snow_browser_height - 50) {
+          snow_xp[i] = Math.random() * (snow_browser_width - snow_am[i] - 30);
+          snow_yp[i] = 0;
+          snow_stx[i] = 0.02 + Math.random() / 10;
+          snow_sty[i] = 0.7 + Math.random();
+        }
+        snow_dx[i] += snow_stx[i];
+        document.getElementById("snow_flake" + i).style.top = snow_yp[i] + "px";
+        document.getElementById("snow_flake" + i).style.left = snow_xp[i] +
+          snow_am[i] * Math.sin(snow_dx[i]) + "px";
+      }
+      snow_time = setTimeout("SnowStart()", 10);
+    }
+    if (timeszimaon == 1) { SnowStart(); }
+  </script>
+</body>
+
+</html>

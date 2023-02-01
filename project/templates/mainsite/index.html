@@ -1,0 +1,80 @@
+{% extends 'mainsite/base.html' %}
+{% load static %}
+{% block title %}Главная страница{% endblock %}
+{% block og_title %}Главная страница{% endblock %}
+{% block og_url %}https://kritohanzo.ru/{% endblock %}
+{% block content %}
+<div class="d-flex h-100 justify-content-center align-items-center">
+	<div class="text-center">
+		<img src="{% static 'gifs/index_cat.gif' %}" class="img-fluid mb-2">
+		<script type="text/javascript">
+			message = "Добро пожаловать на главную страницу!";
+			ns6_switch = 1;
+			var ns6 = document.getElementById && !document.all;
+			var mess = new Array(-1, -5, -9, -13, -9, -5, -1);
+			var num = 0;
+			var scope = 0;
+			var text = "";
+
+			function start_jumping() {
+				if (ns6 && !ns6_switch) {
+					jumping_text.innerHTML = message;
+					return;
+				}
+				for (n = 0; n != message.length; n++) {
+					text += "<span style='position: relative;' id='id_" + n + "'>" +
+						message.charAt(n) + "</span>"
+				}
+				jumping_text.innerHTML = text;
+				text = "";
+				move_left();
+			}
+
+			function move_left() {
+				first_symbol = document.getElementById("id_0");
+				first_symbol.style.left = -scope + "px";
+				if (scope != 12) {
+					scope += 4;
+					setTimeout("move_left();", 50);
+				}
+				else move_right();
+			}
+
+			function move_right() {
+				first_symbol.style.left = -scope + "px";
+				if (scope != 0) {
+					scope -= 4;
+					setTimeout("move_right();", 50);
+				}
+				else wave();
+			}
+
+			function wave() {
+				text = "";
+				for (n = 0; n != message.length; n++) {
+					if (n + num > -1 && n + num < 7) {
+						text += "<span style='position: relative; top: " + mess[n + num] + "px'>" +
+							message.charAt(n) + "</span>"
+					}
+					else text += "<span>" + message.charAt(n) + "</span>";
+				}
+				jumping_text.innerHTML = text;
+				text = "";
+				if (num != (-message.length)) {
+					num--;
+					setTimeout("wave();", 50);
+				}
+				else {
+					num = 0;
+					setTimeout("start_jumping();", 50);
+				}
+			}
+		</script>
+		<h1 id="jumping"></h1>
+		<script type="text/javascript">
+			jumping_text = document.getElementById("jumping");
+			start_jumping();
+			</script>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'forum/base.html' %}
+{% block title %}Удалённые посты{% endblock %}
+{% block og_title %}Форум любителей ТюмГУ - удалённые посты{% endblock %}
+{% block og_url %}https://kritohanzo.ru/forum/deleted_posts/{% endblock %}
+{% block content %}
+
+{% if user.is_superuser %}
+    <div class="d-flex justify-content-center flex-wrap">
+        <p class="text-center font">Список удалённых постов:</p>
+        {% for post in posts %}
+            {% if post.is_deleted == True %}
+                <div class="col-11 row rounded-4 shadow p-4 border bg-danger m-2">
+                    <div class="col-12 col-md-4 font">
+                        Дата: {{ post.pub_date|date:"d.m.Y H:i:s" }}
+                    </div>
+                    <div class="col-12 col-md-4 d-flex flex-column">
+                        <div class="text-center text-break mb-2 pb-2 fw-bold border-bottom border-dark font">
+                            {{ post.title }}
+                        </div>
+                        <div class="text-center text-break mb-2 pb-2 border-bottom border-dark font">
+                            {{ post.text }}
+                        </div>
+                        <div class="text-center mt-2">
+                            <a class="btn btn-outline-dark btn-lg font"
+                                href="{% url 'forum:post_detail_url' pk=post.pk %}">Модерировать</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 d-flex text-break justify-content-end align-items-end font">
+                        Автор: {{ post.author }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="d-flex h-100 justify-content-center align-items-center h-100">
+        <p class="text-center font">Вы не администратор.</p>
+    </div>
+{% endif %}
+
+{% endblock %}

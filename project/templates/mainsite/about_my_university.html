@@ -1,0 +1,34 @@
+{% extends 'mainsite/base.html' %}
+{% load static %}
+{% block title %}О моём университете{% endblock %}
+{% block og_title %}О моём университете{% endblock %}
+{% block og_url %}https://kritohanzo.ru/about_university/{% endblock %}
+{% block content %}
+<div class="text-center d-flex align-items-center flex-column h-100 justify-content-center">
+  <h1 class="px-2">Сәлеметсіз бе снова, тут уже находится information about my विश्वविद्यालय.</h1>
+  <p class="px-2">На этот раз без перевода слов, у вас у всех есть переводчик в браузере.</p>
+  <p class="px-2">Давайте просто взглянем на фотографии моего विश्वविद्यालय.</p>
+  <p class="px-2">Слева будет институт социальных и гумманитарных наук.</p>
+  <p class="px-2">Справа будет наш институт математических и компьютерных наук.</p>
+  <div class="d-flex flex-row flex-wrap mt-4">
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/university4.jpg' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/university1.jpg' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/university5.jpg' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/university3.jpg' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/university6.jpg' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/university2.jpg' %}">
+    </div>
+  </div>
+</div>
+{% endblock%}

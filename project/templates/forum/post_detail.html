@@ -1,0 +1,219 @@
+{% extends 'forum/base.html' %}
+{% block title %}Пост - #{{ post.pk }}{% endblock %}
+{% block og_title %}Форум любителей ТюмГУ - пост #{{ post.pk }}{% endblock %}
+{% block og_url %}https://kritohanzo.ru/forum/post/{{ post.pk }}/{% endblock %}
+{% block content %}
+
+{% if post.is_published == False %}
+{% if user.is_superuser %}
+<div class="d-flex justify-content-center flex-wrap align-items-center h-100">
+    <div class="col-11 row rounded-4 shadow p-4 border bg-danger m-2">
+        <div class="col-12 col-md-4 font">
+            Дата: {{ post.pub_date|date:"d.m.Y H:i:s" }}
+        </div>
+        <div class="col-12 col-md-4 d-flex flex-column">
+            <div class="text-center text-break mb-2 pb-2 fw-bold border-bottom border-dark font">
+                {{ post.title }}
+            </div>
+            <div class="text-center text-break font">
+                {{ post.text }}
+            </div>
+        </div>
+        <div class="col-12 col-md-4 d-flex text-break justify-content-end align-items-end font">
+            Автор: {{ post.author }}
+        </div>
+    </div>
+    <div class="text-center">
+        {% if post.is_deleted == True %}
+        <p class="text-center font mb-2">В посте были замечены проблемы. Пост удалён администрором.</p>
+        <a class="btn btn-light btn-outline-dark btn-lg mb-1 font"
+            href="{% url 'forum:restore_post' pk=post.pk %}">Восстановить</a>
+        {% else %}
+        <p class="text-center font mb-2">В посте были замечены проблемы. Пост находится на модерации.</p>
+        <a class="btn btn-light btn-outline-dark btn-lg mb-1 font"
+            href="{% url 'forum:accept_post' pk=post.pk %}">Одобрить</a>
+        <a class="btn btn-light btn-outline-dark btn-lg mb-1 font"
+            href="{% url 'forum:delete_post' pk=post.pk %}">Удалить</a>
+        {% endif %}
+    </div>
+</div>
+
+{% else %}
+{% if post.is_deleted == True %}
+<div class="d-flex h-100 flex-column justify-content-center align-items-center">
+    <p class="text-center font">В посте были замечены проблемы. Пост удалён администратором.</p>
+</div>
+{% else %}
+<div class="d-flex h-100 flex-column justify-content-center align-items-center">
+    <p class="text-center font">В посте были замечены проблемы. Пост находится на модерации.</p>
+</div>
+{% endif %}
+{% endif %}
+{% elif post.is_deleted == True %}
+{% if user.is_superuser %}
+<div class="d-flex justify-content-center flex-wrap align-items-center h-100">
+    <div class="col-11 row rounded-4 shadow p-4 border bg-danger m-2">
+        <div class="col-12 col-md-4 font">
+            Дата: {{ post.pub_date|date:"d.m.Y H:i:s" }}
+        </div>
+        <div class="col-12 col-md-4 d-flex flex-column">
+            <div class="text-center text-break mb-2 pb-2 fw-bold border-bottom border-dark font">
+                {{ post.title }}
+            </div>
+            <div class="text-center text-break font">
+                {{ post.text }}
+            </div>
+        </div>
+        <div class="col-12 col-md-4 d-flex text-break justify-content-end align-items-end font">
+            Автор: {{ post.author }}
+        </div>
+    </div>
+    <div class="text-center">
+        {% if post.is_deleted == True %}
+        <p class="text-center font mb-2">В посте были замечены проблемы. Пост навсегда удалён.</p>
+        <a class="btn btn-light btn-outline-dark btn-lg mb-1 font"
+            href="{% url 'forum:restore_post' pk=post.pk %}">Восстановить</a>
+        {% else %}
+        <p class="text-center font mb-2">В посте были замечены проблемы. Пост находится на модерации.</p>
+        <a class="btn btn-light btn-outline-dark btn-lg mb-1 font"
+            href="{% url 'forum:accept_post' pk=post.pk %}">Одобрить</a>
+        <a class="btn btn-light btn-outline-dark btn-lg mb-1 font"
+            href="{% url 'forum:delete_post' pk=post.pk %}">Удалить</a>
+        {% endif %}
+    </div>
+</div>
+{% else %}
+{% if post.is_deleted == True %}
+<div class="d-flex h-100 flex-column justify-content-center align-items-center">
+    <p class="text-center font">В посте были замечены проблемы. Пост удалён навсегда.</p>
+</div>
+{% else %}
+<div class="d-flex h-100 flex-column justify-content-center align-items-center">
+    <p class="text-center font">В посте были замечены проблемы. Пост находится на модерации.</p>
+</div>
+{% endif %}
+{% endif %}
+{% else %}
+<div class="text-center d-flex align-items-center flex-column justify-content-center font">
+    <form action="{% url 'forum:post_detail_url' post.pk %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        {% if not field.label == 'Автор' and not field.label == 'Пост' %}
+        <div class="form-group mb-2">
+            {% if field.errors %}
+            <div class="error">
+                {{ field.errors }}
+            </div>
+            {% endif %}
+            <div class="text-center">
+                <p class="font text-center">Текст комментария</p>
+                {{ field }}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <button class="btn btn-light btn-outline-dark btn-lg mb-1 font" type="submit" name="button">Оставить новый
+            комментарий</button>
+    </form>
+</div>
+
+<div class="d-flex justify-content-center flex-wrap">
+    <div class="col-11 row rounded-4 shadow p-4 border bg-white m-2">
+        <div class="col-12 col-md-4 font">
+            Дата: {{ post.pub_date|date:"d.m.Y H:i:s" }}
+        </div>
+        <div class="col-12 col-md-4 d-flex flex-column">
+            <div class="text-center text-break mb-2 pb-2 fw-bold border-bottom border-dark font">
+                {{ post.title }}
+            </div>
+            {% if user.is_superuser %}
+            <div class="text-center text-break mb-3 pb-3 border-bottom border-dark font">
+                {{ post.text }}
+            </div>
+            <div class="text-center font">
+                <a class="btn btn-danger btn-outline-dark btn-lg font"
+                    href="{% url 'forum:on_moderate_post' pk=post.pk %}">На модерацию</a>
+                <a class="btn btn-danger btn-outline-dark btn-lg font"
+                    href="{% url 'forum:delete_post' pk=post.pk %}">Удалить</a>
+            </div>
+            {% else %}
+            <div class="text-center text-break font">
+                {{ post.text }}
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-12 col-md-4 d-flex text-break justify-content-end align-items-end font">
+            Автор: {{ post.author }}
+        </div>
+    </div>
+
+    {% for comment in comments %}
+    {% if comment.is_published == True and comment.is_deleted == False %}
+    <div class="col-10 row rounded-4 shadow p-4 border bg-white m-2">
+        <div class="col-12 col-md-4 font">
+            Дата: {{ comment.pub_date|date:"d.m.Y H:i:s" }}
+        </div>
+        <div class="col-12 col-md-4 text-break text-center font">
+            {% if user.is_superuser %}
+                <div class="text-center text-break mb-3 pb-3 border-bottom border-dark font">
+                    {{ comment.text }}
+                </div>  
+                <div class="text-center font">
+                    <a class="btn btn-danger btn-outline-dark btn-lg mb-1 font"
+                        href="{% url 'forum:on_moderate_comment' pk=comment.pk %}">На модерацию</a>
+                    <a class="btn btn-danger btn-outline-dark btn-lg mb-1 font"
+                        href="{% url 'forum:delete_comment' pk=comment.pk %}">Удалить</a>
+                </div>
+            {% else %}
+            {{ comment.text }}
+            {% endif %}
+        </div>
+        <div class="col-12 col-md-4 d-flex text-break justify-content-end align-items-end font">
+            Автор: {{ comment.author }}
+        </div>
+    </div>
+    {% else %}
+    <div class="col-10 row rounded-4 shadow p-4 border bg-danger m-2">
+        <div class="col-12 col-md-4 mb-4 font">
+            Дата: {{ comment.pub_date|date:"d.m.Y H:i:s" }}
+        </div>
+        {% if user.is_superuser %}
+        <div class="col-12 col-md-4 text-break text-center font">
+            <div class="text-center text-break mb-3 pb-3 border-bottom border-dark font">
+                {{ comment.text }}
+            </div>
+
+
+            {% if comment.is_published == False and comment.is_deleted == False %}
+            <div class="text-center font">
+                <a class="btn btn-light btn-outline-dark btn-lg mb-1 font"
+                    href="{% url 'forum:accept_comment' pk=comment.pk %}">Одобрить</a>
+                <a class="btn btn-light btn-outline-dark btn-lg mb-1 font"
+                    href="{% url 'forum:delete_comment' pk=comment.pk %}">Удалить</a>
+            </div>
+
+            {% elif comment.is_deleted == True %}
+            <div class="text-center font">
+                <a class="btn btn-light btn-outline-dark btn-lg mb-1 font"
+                    href="{% url 'forum:restore_comment' pk=comment.pk %}">Восстановить</a>
+            </div>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="col-12 col-md-4 text-break text-center font">
+            {% if comment.is_deleted %}
+            Комментарий удалён администратором.
+            {% else %}
+            Комментарий находится на модерации.
+            {% endif %}
+        </div>
+        {% endif %}
+        <div class="col-12 col-md-4 d-flex text-break justify-content-end align-items-end font">
+            Автор: {{ comment.author }}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

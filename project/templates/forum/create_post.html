@@ -1,0 +1,36 @@
+{% extends 'forum/base.html' %}
+{% block title %}Создание нового поста{% endblock %}
+{% block og_title %}Форум любителей ТюмГУ - создание поста{% endblock %}
+{% block og_url %}https://kritohanzo.ru/forum/create/{% endblock %}
+{% block content %}
+<div class="text-center d-flex align-items-center flex-column h-100 justify-content-center font">
+    <form action="{% url 'forum:post_create' %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if not field.label == 'Автор' and not field.label == 'Опубликовано' %}
+                <div class="form-group mb-2">
+                    {% if field.errors %}
+                        <div class="error">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                    <p class="font text-center">{{ field.label }} поста</p>
+                    {{ field }}
+                </div>
+            {% endif %}   
+        {% endfor %}
+        <button class="btn btn-light btn-outline-dark btn-lg font mt-2" type="submit">Создать пост</button>
+    </form>
+</div>
+
+{% if messages %}
+{% for message in messages %}
+{% if message.tags %}
+<script>
+  alert("{{ message }}")
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% endblock %}

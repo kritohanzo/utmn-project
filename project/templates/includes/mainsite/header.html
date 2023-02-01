@@ -1,0 +1,56 @@
+{% load static %}
+<div
+  class="col-12 col-sm-12 col-md-12 col-xl-11 mx-auto d-flex flex-row flex-wrap p-4 text-center justify-content-center justify-content-sm-center justify-content-md-center justify-content-xl-between">
+  <div class="col-12 col-sm-12 col-md-12 col-xl-12 mb-2">
+    <a href="{% url 'mainsite:index' %}"><img src="{% static 'logos/logo.png' %}"></a>
+  </div>
+  <div class="col-12 col-sm-12 col-md-12 col-xl-12 my-2 row justify-content-center">
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto row align-content-center">
+      <FORM>
+        <SELECT onChange="ReplaceBackground(this.options[this.selectedIndex].value)">
+          <OPTION VALUE="#FF0000">красный
+          <OPTION VALUE="#2E8B57">морской волны
+          <OPTION VALUE="#87CEEB">голубой
+          <OPTION VALUE="#B45F04">коричневый
+          <OPTION VALUE="#FFFF00">желтый
+          <OPTION VALUE="#0000FF">синий
+          <OPTION VALUE="#FA58F4">-розовый-
+          <OPTION VALUE="#B40431">-краповый-
+          <OPTION VALUE="#58FA58">-ярко-зеленый-
+          <OPTION VALUE="#0B610B">-тёмно-зеленый-
+          <OPTION VALUE="linear-gradient(to bottom right, aqua, white)" SELECTED>-классика-
+        </SELECT>
+      </FORM>
+      <script>
+        var ReplaceBackground = function (colorid) {
+          document.body.style.background = colorid;
+        }
+      </script>
+    </div>
+  </div>
+  <div class="col-12 col-sm-12 col-md-12 col-xl-12 justify-content-center row align-content-center mb-2">
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+      <a class="current_link" href="" onclick="alert(new Date());return false">Время и дата</a>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+      <a class="current_link" href="{% url 'mainsite:calendar' %}">Календарь</a>
+    </div>
+  </div>
+  <div class="col-12 col-sm-12 col-md-12 col-xl-12 row m-0 justify-content-center align-content-center">
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+      <a class="current_link" href="{% url 'mainsite:about_me' %}">Обо мне</a>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+      <a class="current_link" href="{% url 'mainsite:about_my_cat' %}">О моём коте</a>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+      <a class="current_link" href="{% url 'mainsite:about_my_university' %}">О моём университете</a>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+      <a class="current_link" href="{% url 'mainsite:about_my_friend' %}">О моём друге</a>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-xl-auto">
+      <a class="current_link" href="{% url 'forum:index' %}">Форум</a>
+    </div>
+  </div>
+</div>

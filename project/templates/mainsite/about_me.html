@@ -1,0 +1,34 @@
+{% extends 'mainsite/base.html' %}
+{% load static %}
+{% block title %}Обо мне{% endblock %}
+{% block og_title %}Обо мне{% endblock %}
+{% block og_url %}https://kritohanzo.ru/about_me/{% endblock %}
+{% block content %}
+<div class="text-center d-flex align-items-center flex-column h-100 justify-content-center">
+  <h1 class="px-2">Всем おい, тут вы найдёте information about ME.</h1>
+  <p class="px-2">Меня зовут ANONIMOUS, мне XY лет, я учусь в XYZ...</p>
+  <p class="px-2">...через 5 лет я планирую выкупить XYZ и сделать тут столовую...</p>
+  <p class="px-2">...вот такую бомбезную столовую!</p>
+
+  <div class="d-flex flex-row flex-wrap mt-4">
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/stolovka.jpg' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/stolovka2.jpg' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/stolovka3.jpg' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/stolovka4.jpg' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/stolovka5.jpg' %}">
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <img class="img-fluid p-2 imgs" src="{% static 'images/stolovka6.jpg' %}">
+    </div>
+  </div>
+</div>
+{% endblock %}
