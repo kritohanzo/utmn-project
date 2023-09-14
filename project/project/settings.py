@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '+e*v*3nlsr!qhf2wi-381(sjn*3i&dxz^o^+q-oj9dew2g%b!='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -117,12 +117,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-STATIC_URL = '/project/static/'
-STATICFILES_DIR = os.path.join(BASE_DIR, 'static')
+STATIC_URL = "/static/"
+STATICFILES_DIR = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = [STATICFILES_DIR]
 
 # STATIC_ROOT = '/home/k/kritohanzo/newsite/public_html/project/static'
